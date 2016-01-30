@@ -1,0 +1,23 @@
+#!/bin/bash
+echo "Making a new directory ~/mywifidrivers/";
+mkdir ~/mywifidrivers;
+cd ~/mywifidrivers;
+echo "cloning git repo...";
+git clone https://github.com/lwfinger/rtlwifi_new.git;
+echo "Entering ~/mywifidrivers/rtlwifi_new...";
+cd ~/mywifidrivers/rtlwifi_new/;
+echo "Changing branch to rock.new_btcoex...";
+git checkout rock.new_btcoex;
+git_branch="`git rev-parse --abbrev-ref HEAD`";
+test_branch="rock.new_btcoex";
+if [ $git_branch = $test_branch ]; then
+	make;
+	sudo make install;
+	echo "removing module 'rtl8723be' ...";
+	sudo modprobe -rv rtl8723be;
+	echo "adding module 'rtl8723be'...";
+	sudo modprobe -v rtl8723be ips=0 ant_sel=2;
+else
+	echo "ERROR: Not in correct branch, aborting...";
+	return -1;
+fi
