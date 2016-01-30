@@ -35,7 +35,7 @@ if [ $git_branch = $test_branch ]; then
 	echo "\nremoving module 'rtl8723be' ..."
 	sudo modprobe -rv rtl8723be
 	echo "\nadding module 'rtl8723be'..."
-	sudo modprobe -v rtl8723be
+	sudo modprobe -v rtl8723be ips=0 ant-sel=2
 else
 	echo "Not in correct branch, aborting...\n"
 	return -1
