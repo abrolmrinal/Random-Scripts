@@ -26,7 +26,6 @@ echo "\nEntering ~/mywifidrivers/rtlwifi_new..."
 cd ~/mywifidrivers/rtlwifi_new/
 echo "\nChanging branch to rock.new_btcoex..."
 git checkout rock.new_btcoex
-echo "\n
 git_branch="`git rev-parse --abbrev-ref HEAD`"
 test_branch="rock.new_btcoex"
 if [ $git_branch = $test_branch ]; then
